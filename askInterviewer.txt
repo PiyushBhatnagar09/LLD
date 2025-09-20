@@ -1,0 +1,41 @@
+1. Ask if any more requirements are there.
+2. Ask if there is any other function that is missing
+3. Ask if he is comfortable if i write whole code in one file or should i distribute code in different files
+
+requirements->Core entities (class names) -> fields (variables,etc) -> methods (functions)
+
+IMP :-
+-> Concurrent access should be controlled using mutex
+-> Design pattern for different classes
+ - Singleton pattern for Parking Lot class
+ - Base class from which you derive other classes, should have virtual functions i.e. Base class should be abstract class
+ - use Enum for storing types of particular thing like VehicleType, VoteType
+ - firstly use Vehicle*, new Vehicle(), etc then finally use shared_ptr<Vehicle>, make_shared<Vehicle>()
+
+Design Patterns Used:
+ - Singleton Pattern: Ensures only one instance of the ParkingLot class. To avoid data inconsistency.
+ - Factory Pattern (optional extension): Could be used for creating vehicles based on input.
+ - Observer Pattern (optional extension): Could notify customers about available spots.
+
+🔹 What is std::shared_ptr?
+std::shared_ptr is a smart pointer in C++ (from <memory>) that maintains reference counting.
+
+Multiple shared_ptrs can share ownership of the same object.
+
+The object is destroyed automatically when the last shared_ptr pointing to it is destroyed.
+
+🔹 What is std::make_shared?
+std::make_shared<T>() is a safer and faster way to create a shared_ptr<T>. It:
+
+Creates the object and the control block (reference counter) in one memory allocation.
+
+Reduces bugs and is more efficient than doing std::shared_ptr<T>(new T).
+
+1. ✅ Singleton Pattern
+Purpose: Ensure that only one instance of a class exists in the entire system.
+2. 🏭 Factory Pattern (optional)
+Purpose: Create objects without specifying the exact class — useful for managing object creation based on some input.
+3. 👀 Observer Pattern (optional)
+Purpose: Notify multiple objects when a certain event happens — a publisher/subscriber model.
+4. 🧠 What is the Strategy Pattern?
+The Strategy Pattern is a behavioral design pattern that allows you to define a family of algorithms, put each in a separate class, and make them interchangeable at runtime.
