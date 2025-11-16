@@ -1,0 +1,25 @@
+✅ Why explicit is used?
+
+Without explicit, C++ can implicitly convert one type into another, which can cause bugs.
+
+Example:
+
+class Car {
+public:
+    Car(const std::string& licenseNumber) { ... }
+};
+
+
+If the constructor is not explicit, then this is allowed:
+
+Car c = "ABC123";   // Allowed! Implicit conversion from string to Car
+
+
+This may not be what you want.
+
+🚫 This is bad because:
+
+C++ automatically creates a Car object from a string literal "ABC123"
+—even though you didn’t say Car("ABC123").
+
+This can introduce subtle bugs.

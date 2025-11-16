@@ -1,0 +1,44 @@
+✅ 1. Why is a virtual destructor needed in C++?
+
+A virtual destructor is required when you delete a derived-class object through a base-class pointer.
+
+Example:
+Vehicle* v = new Bike();
+delete v;   // <-- What happens here?
+
+❌ Without a virtual destructor
+
+If Vehicle does not have a virtual destructor:
+
+Only Vehicle’s destructor is called
+
+Bike’s destructor is NOT called
+
+This can cause memory leaks, resource leaks, or undefined behavior
+
+Why?
+
+Because the compiler uses static binding (compile-time decision) for destructors unless they are virtual.
+
+✅ With a virtual destructor
+class Vehicle {
+public:
+    virtual ~Vehicle() {}
+};
+
+
+Now deleting through a base pointer:
+
+Vehicle* v = new Bike();
+delete v;
+
+
+Calls Bike’s destructor
+
+Then calls Vehicle’s destructor
+
+Safe and correct cleanup occurs
+
+✔ Rule of Thumb:
+
+If your class is meant to be used polymorphically, always give it a virtual destructor.
