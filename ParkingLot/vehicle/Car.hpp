@@ -6,6 +6,7 @@
 class Car : public Vehicle {
 public:
     explicit Car(const std::string& licenseNumber);
+    void printInfo() const override;
 };
 
 #endif // CAR_HPP

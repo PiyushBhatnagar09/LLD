@@ -6,13 +6,13 @@
 #include <string>
 #include <memory>
 
-#include "ParkingFloor.hpp"
-#include "ParkingSpot.hpp"
-#include "ParkingTicket.hpp"
-#include "ParkingStrategy.hpp"
-#include "FeeStrategy.hpp"
-#include "FlatRateFeeStrategy.hpp"
-#include "BestFitStrategy.hpp"
+#include "entities/ParkingFloor.hpp"
+#include "entities/ParkingSpot.hpp"
+#include "entities/ParkingTicket.hpp"
+#include "strategy/parking/ParkingStrategy.hpp"
+#include "strategy/fee/FeeStrategy.hpp"
+#include "strategy/fee/FlatRateFeeStrategy.hpp"
+#include "strategy/parking/BestFitStrategy.hpp"
 
 using namespace std;
 
@@ -21,7 +21,7 @@ private:
     static ParkingLot* instance;
 
     vector<ParkingFloor> floors;
-    map<string, ParkingTicket> activeTickets;
+    map<string, ParkingTicket*> activeTickets; // store pointers
 
     unique_ptr<FeeStrategy> feeStrategy;
     unique_ptr<ParkingStrategy> parkingStrategy;
@@ -37,7 +37,9 @@ public:
     void setParkingStrategy(unique_ptr<ParkingStrategy> strategy);
 
     ParkingTicket* parkVehicle(Vehicle* vehicle);
-    double* unparkVehicle(const string& licenseNumber);
+    double* unparkVehicle(const string& licenseNumber); // corrected return type
+
+    ~ParkingLot(); // destructor to clean up tickets
 };
 
 #endif

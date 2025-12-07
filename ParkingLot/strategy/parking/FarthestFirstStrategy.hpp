@@ -7,8 +7,7 @@ using namespace std;
 
 class FarthestFirstStrategy : public ParkingStrategy {
 public:
-    optional<ParkingSpot> findSpot(const vector<ParkingFloor>& floors,
-                                   const Vehicle& vehicle) override;
+    ParkingSpot* findSpot(const vector<ParkingFloor>& floors, Vehicle* vehicle) override;
 };
 
 #endif

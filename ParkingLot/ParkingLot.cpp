@@ -22,11 +22,11 @@ void ParkingLot::addFloor(const ParkingFloor& floor) {
 }
 
 void ParkingLot::setFeeStrategy(unique_ptr<FeeStrategy> strategy) {
-    feeStrategy = move(strategy);
+    feeStrategy = std::move(strategy);
 }
 
 void ParkingLot::setParkingStrategy(unique_ptr<ParkingStrategy> strategy) {
-    parkingStrategy = move(strategy);
+    parkingStrategy = std::move(strategy);
 }
 
 ParkingTicket* ParkingLot::parkVehicle(Vehicle* vehicle) {
@@ -35,19 +35,17 @@ ParkingTicket* ParkingLot::parkVehicle(Vehicle* vehicle) {
     if (spot != nullptr) {
         spot->parkVehicle(vehicle);
 
-        ParkingTicket ticket(vehicle, *spot);
-        activeTickets[vehicle.getLicenseNumber()] = ticket;
+        ParkingTicket* ticket = new ParkingTicket(vehicle, spot);
+        activeTickets[vehicle->getLicenseNumber()] = ticket;
 
-        ParkingTicket* storedTicket = &activeTickets[vehicle.getLicenseNumber()];
-
-        cout << vehicle.getLicenseNumber()
+        cout << vehicle->getLicenseNumber()
              << " parked at " << spot->getSpotId()
-             << ". Ticket: " << storedTicket->getTicketId() << endl;
+             << ". Ticket: " << ticket->getTicketId() << endl;
 
-        return storedTicket;
+        return ticket;
     }
 
-    cout << "No available spot for " << vehicle.getLicenseNumber() << endl;
+    cout << "No available spot for " << vehicle->getLicenseNumber() << endl;
     return nullptr;
 }
 
@@ -59,16 +57,23 @@ double* ParkingLot::unparkVehicle(const string& licenseNumber) {
         return nullptr;
     }
 
-    ParkingTicket& ticket = it->second;
-    ParkingSpot& spot = ticket.getSpot();
+    ParkingTicket* ticket = it->second;
+    ParkingSpot* spot = ticket->getSpot();
 
-    ticket.setExitTimestamp();
-    spot.unparkVehicle();
+    ticket->setExitTimestamp();
+    spot->unparkVehicle();
 
     double fee = feeStrategy->calculateFee(ticket);
 
+    delete ticket;
     activeTickets.erase(it);
 
     double* result = new double(fee);  // caller must delete!
     return result;
+}
+
+ParkingLot::~ParkingLot() {
+    for (auto& entry : activeTickets) {
+        delete entry.second;
+    }
 }

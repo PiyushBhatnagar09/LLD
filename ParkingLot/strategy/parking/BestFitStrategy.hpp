@@ -2,13 +2,14 @@
 #define BESTFITSTRATEGY_HPP
 
 #include "ParkingStrategy.hpp"
+#include <vector>
+#include <string>
 
 using namespace std;
 
 class BestFitStrategy : public ParkingStrategy {
 public:
-    optional<ParkingSpot> findSpot(const vector<ParkingFloor>& floors,
-                                   const Vehicle& vehicle) override;
+    ParkingSpot* findSpot(const std::vector<ParkingFloor>& floors, Vehicle* vehicle) override;
 };
 
 #endif

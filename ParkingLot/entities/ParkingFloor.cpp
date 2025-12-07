@@ -8,10 +8,10 @@ void ParkingFloor::addSpot(ParkingSpot* spot) {
     spots[spot->getSpotId()] = spot;
 }
 
-ParkingSpot* ParkingFloor::findAvailableSpot(Vehicle* vehicle) {
+ParkingSpot* ParkingFloor::findAvailableSpot(Vehicle* vehicle) const {
     ParkingSpot* best = nullptr;
 
-    for (auto& entry : spots) {
+    for (const auto& entry : spots) {
         ParkingSpot* spot = entry.second;
 
         if (!spot->isOccupied() && spot->canFitVehicle(vehicle)) {
@@ -25,7 +25,7 @@ ParkingSpot* ParkingFloor::findAvailableSpot(Vehicle* vehicle) {
     return best;  // nullptr means no spot available
 }
 
-void ParkingFloor::displayAvailability() {
+void ParkingFloor::displayAvailability() const {
     cout << "--- Floor " << floorNumber << " Availability ---" << endl;
 
     map<VehicleSize, int> availableCounts = {
@@ -34,7 +34,7 @@ void ParkingFloor::displayAvailability() {
         {VehicleSize::LARGE, 0}
     };
 
-    for (auto& entry : spots) {
+    for (const auto& entry : spots) {
         ParkingSpot* spot = entry.second;
         if (!spot->isOccupied()) {
             availableCounts[spot->getSpotSize()]++;

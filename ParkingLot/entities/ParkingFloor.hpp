@@ -4,8 +4,8 @@
 #include <string>
 #include <map>
 #include "ParkingSpot.hpp"
-#include "Vehicle.hpp"
-#include "VehicleSize.hpp"
+#include "../vehicle/Vehicle.hpp"
+#include "../vehicle/VehicleSize.hpp"
 using namespace std;
 
 class ParkingFloor {
@@ -18,9 +18,9 @@ public:
 
     void addSpot(ParkingSpot* spot);
 
-    ParkingSpot* findAvailableSpot(Vehicle* vehicle);
+    ParkingSpot* findAvailableSpot(Vehicle* vehicle) const;
 
-    void displayAvailability();
+    void displayAvailability() const;
 };
 
 #endif // PARKING_FLOOR_HPP

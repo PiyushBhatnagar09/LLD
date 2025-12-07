@@ -1,7 +1,7 @@
 #ifndef FEESTRATEGY_HPP
 #define FEESTRATEGY_HPP
 
-#include "ParkingTicket.hpp"
+#include "../../entities/ParkingTicket.hpp"
 using namespace std;
 
 class FeeStrategy {

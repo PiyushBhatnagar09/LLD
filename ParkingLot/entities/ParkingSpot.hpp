@@ -2,8 +2,8 @@
 #define PARKING_SPOT_HPP
 
 #include <string>
-#include "Vehicle.hpp"
-#include "VehicleSize.hpp"
+#include "../vehicle/Vehicle.hpp"
+#include "../vehicle/VehicleSize.hpp"
 using namespace std;
 
 class ParkingSpot {

@@ -1,13 +1,13 @@
 #include "NearestFirstStrategy.hpp"
 
 ParkingSpot* NearestFirstStrategy::findSpot(const vector<ParkingFloor>& floors,
-                                                     const Vehicle& vehicle)
+                                            Vehicle* vehicle)
 {
     for (const auto& floor : floors) {
-        auto spot = floor.findAvailableSpot(vehicle);
-        if (spot.has_value()) {
+        ParkingSpot* spot = floor.findAvailableSpot(vehicle);
+        if (spot != nullptr) {
             return spot;
         }
     }
-    return nullopt;
+    return nullptr;
 }

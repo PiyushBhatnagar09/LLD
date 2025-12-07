@@ -1,16 +1,16 @@
 #include "BestFitStrategy.hpp"
 
 ParkingSpot* BestFitStrategy::findSpot(const vector<ParkingFloor>& floors,
-                                                const Vehicle& vehicle)
+                                       Vehicle* vehicle)
 {
-    ParkingSpot* bestSpot = nullopt;
+    ParkingSpot* bestSpot = nullptr;
 
     for (const auto& floor : floors) {
-        auto spotOnThisFloor = floor.findAvailableSpot(vehicle);
+        ParkingSpot* spotOnThisFloor = floor.findAvailableSpot(vehicle);
 
-        if (spotOnThisFloor.has_value()) {
-            if (!bestSpot.has_value() ||
-                spotOnThisFloor->getSpotSize() < bestSpot->getSpotSize()) 
+        if (spotOnThisFloor != nullptr) {
+            if (bestSpot == nullptr ||
+                spotOnThisFloor->getSpotSize() < bestSpot->getSpotSize())
             {
                 bestSpot = spotOnThisFloor;
             }

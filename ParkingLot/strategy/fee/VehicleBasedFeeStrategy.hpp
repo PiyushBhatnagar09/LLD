@@ -2,7 +2,7 @@
 #define VEHICLE_BASED_FEE_STRATEGY_HPP
 
 #include "FeeStrategy.hpp"
-#include "VehicleSize.hpp"
+#include "../../vehicle/VehicleSize.hpp"
 #include <map>
 using namespace std;
 
