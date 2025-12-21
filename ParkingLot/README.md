@@ -1,3 +1,9 @@
+Learning Updates - 
+1. VehicleSize, Vehicle done
+2. Vehic
+
+
+
 # Parking Lot System (LLD)
 
 ## Problem Statement

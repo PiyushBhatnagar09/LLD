@@ -23,3 +23,13 @@ C++ automatically creates a Car object from a string literal "ABC123"
 —even though you didn’t say Car("ABC123").
 
 This can introduce subtle bugs.
+---------------------------------------------------
+When you SHOULD use explicit
+
+Use explicit for:
+
+Single-parameter constructors
+
+Constructors where implicit conversion would be confusing or unsafe
+
+Value-wrapper classes (e.g., Distance, Age, ID)

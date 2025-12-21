@@ -1,9 +1,9 @@
 #include "Truck.hpp"
 #include <iostream>
 
-Truck::Truck(const std::string& licenseNumber)
+Truck::Truck(const string& licenseNumber)
     : Vehicle(licenseNumber, VehicleSize::LARGE) {}
 
 void Truck::printInfo() const {
-    std::cout << "Truck: " << getLicenseNumber() << std::endl;
+    cout << "Truck: " << getLicenseNumber() << endl;
 }

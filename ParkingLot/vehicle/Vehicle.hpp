@@ -16,6 +16,8 @@ protected:
 public:
     Vehicle(const string& licenseNumber, VehicleSize size);
 
+    //virtual destructor is needed so that derived class destructors are called properly 
+    //once derived class objects are deleted through base class pointers
     virtual ~Vehicle() = default;  // Important for polymorphism
 
     string getLicenseNumber() const;
