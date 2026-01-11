@@ -1,22 +1,32 @@
-**C++ or Java for LLD?**
+**Process to follow in LLD Interview**
+- Ask for all requirements
+- From requirements, find out classes/entities/enumerations
+- Write fields/variables, functions/methods of each class
+- Design pattern for each class
 
+**FAQs**
+***1. C++ or Java for LLD?***
 - Java: Mostly used in Industry, so every interviewer will know this language. LLD is relatively easy in Java than in C++.
 - C++: I am more comfortable in C++ because I have used it for 4 years in college. Also, you need to create .hpp files for declaration of class then copy all functions declaration in separate file then write class_name:: before each function and write the logic for each function.
 
-I am going forward with C++. Later on if possible or if needed then I will switch to Java.
+- I am going forward with C++. Later on if possible or if needed then I will switch to Java.
 
-Use this command - 
+- First I will see code of ParkingLot then I will write code for other systems by myself first.
+
+***2. How to run a LLD code***
+Use this command to compile all files
 PS D:\PB\PIYUSH\LLD\ParkingLot> .\build_run.ps1
 
-COMMANDS - 
+Use this command to run the main file
 cd 'd:\PB\PIYUSH\LLD\ParkingLot'; & .\ParkingLotDemo.exe
 
-Process done by CoPilot - 
+Process done by copilot
 PS D:\PB\PIYUSH\LLD\ParkingLot> cd 'd:\PB\PIYUSH\LLD\ParkingLot'; & cmd /c "chcp 65001>nul && C:\MinGW\bin\g++.exe -fdiagnostics-color=always -g ParkingLotDemo.cpp ParkingLot.cpp entities\ParkingFloor.cpp entities\ParkingSpot.cpp entities\ParkingTicket.cpp strategy\parking\NearestFirstStrategy.cpp strategy\parking\FarthestFirstStrategy.cpp strategy\parking\BestFitStrategy.cpp strategy\fee\VehicleBasedFeeStrategy.cpp strategy\fee\FlatRateFeeStrategy.cpp vehicle\Vehicle.cpp vehicle\Car.cpp vehicle\Bike.cpp vehicle\Truck.cpp -o ParkingLotDemo.exe"
+
 PS D:\PB\PIYUSH\LLD\ParkingLot> cd 'd:\PB\PIYUSH\LLD\ParkingLot'; & cmd /c "if exist ParkingLotDemo.exe (echo EXISTS) else (echo MISSING)"
 EXISTS
+
 PS D:\PB\PIYUSH\LLD\ParkingLot> cd 'd:\PB\PIYUSH\LLD\ParkingLot'; & .\ParkingLotDemo.exe
-here1
 
 --- Vehicle Entries ---
 --- Floor 1 Availability ---
