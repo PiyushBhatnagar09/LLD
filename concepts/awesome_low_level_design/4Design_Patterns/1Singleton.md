@@ -1,0 +1,2 @@
+The main concept is whenever I make a new instance of a singleton class then it should always point to same instance.
+This can happend when 'new ClassName()' is not possible. So, we have to make constructor private.

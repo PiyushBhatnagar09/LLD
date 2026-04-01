@@ -1,0 +1,1 @@
+- Factory, Strategy, Singleton pattern

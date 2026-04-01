@@ -1,3 +1,5 @@
+## Based on Direction
+
 1. Unidirectional
 EX: Order uses Payment Gateway
 
@@ -51,3 +53,57 @@ public:
     }
 };
 ```
+
+## Based on Multiplicity
+
+1..1, 1..*, *..1, *..*
+
+Code - IMP
+class Group; // Forward declaration
+
+class User {
+private:
+    string name;
+    vector<Group*> groups;
+public:
+    User(const string& name) : name(name) {}
+
+    void joinGroup(Group* group);
+
+    string getName() const { return name; }
+    vector<Group*> getGroups() const { return groups; }
+};
+
+class Group {
+private:
+    string name;
+    vector<User*> users;
+public:
+    Group(const string& name) : name(name) {}
+
+    void addUser(User* user) {
+        for (auto u : users) if (u == user) return;
+        users.push_back(user);
+        user->joinGroup(this);
+    }
+
+    string getName() const { return name; }
+    vector<User*> getUsers() const { return users; }
+};
+
+void User::joinGroup(Group* group) {
+    for (auto g : groups) if (g == group) return;
+    groups.push_back(group);
+    group->addUser(this);
+}
+
+// Usage
+User alice("Alice");
+User bob("Bob");
+
+Group backend("Backend");
+Group devOps("DevOps");
+
+alice.joinGroup(&backend);
+alice.joinGroup(&devOps);
+bob.joinGroup(&backend);
